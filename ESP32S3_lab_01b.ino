@@ -8,8 +8,8 @@
   20261021 001 - touchup with round robin
   **********************************************************************/
 
-const uint8_t   KPinLedExternal =           0x0e; // 14; // internal LED pin
-const uint8_t   KPinLedInternal =           0x02; 
+const uint8_t   KPinLedExternal =           0x0e; // 14; // external LED pin
+const uint8_t   KPinLedInternal =           0x02; // internal LED pin
 const uint8_t   KPinAdcPotentiometer =      0x01;
 
 // ADC & PWM
@@ -24,21 +24,21 @@ void setup() {
   delay(1000);
 
   // initialise PWM control for LED
-  ledcAttachChannel( KPinLedExternal, KPwmFrequency, KPwmBitResolution, KPwmChannel);
+  ledcAttachChannel( KPinLedExternal, KPwmFrequency, KPwmBitResolution, KPwmChannel );
 
   // initialise heartbeat
-  pinMode(KPinLedInternal,OUTPUT);
+  pinMode( KPinLedInternal, OUTPUT );
 }
 
 void loop() {
 
-  doReadAndControlLed(333);
+  doReadPrintAndControlLed(333);
 
   doHeartBeat();
 
 }
 
-void doReadAndControlLed(uint32_t aInterval) {
+void doReadPrintAndControlLed( uint32_t aInterval ) {
   uint32_t currentTime = millis();
   static uint32_t previousTime = currentTime;
   if( currentTime - previousTime < aInterval ) return; else previousTime = currentTime;
