@@ -20,6 +20,7 @@ const uint8_t   KPwmBitResolution = 12;
 uint16_t valueAdc;
 
 void setup() {
+  // initialise serial port
   Serial.begin(115200);
   delay(1000);
 
